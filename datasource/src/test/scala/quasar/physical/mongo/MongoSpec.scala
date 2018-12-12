@@ -55,7 +55,6 @@ class MongoSpec extends EffectfulQSpec[IO] {
 
   "getting databases works correctly" >>* mkMongo.flatMap(_ { mongo =>
     mongo.databases.compile.toList.map { evaluatedDbs =>
-      scala.Predef.println(evaluatedDbs)
       MongoSpec.correctDbs.toSet.subsetOf(evaluatedDbs.toSet)
     }
   })
